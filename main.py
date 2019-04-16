@@ -42,7 +42,7 @@ def download_thread(index):
     locks[index] = False
 
 
-def main(url):
+def main(url, new_file_name):
     global total
     global locks
     global path
@@ -61,7 +61,7 @@ def main(url):
 
     while locks[0] or locks[1] or locks[2] or locks[3] or locks[4]:
         continue
-    os.system('copy /b temp\\*.ts temp\\new.mp4')
+    os.system('copy /b temp\\*.ts temp\\' + new_file_name + '.mp4')
     os.popen('del temp\\*.ts')
 
 
@@ -69,4 +69,4 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print('请加上m3u8视频的网址')
     else:
-        main(sys.argv[1])
+        main(sys.argv[1], sys.argv[2])
